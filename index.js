@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 app.get('/webhook', (req, res) => {
 
-	let city = req.body.queryResult.parameters['geo-city'];
+	let city = req.body.queryResult.parameters["geo-city"];
 	// let city = 'Lagos';
 	callWeather = (city) =>{
 		return new Promise((resolve, reject) => {
