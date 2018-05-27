@@ -17,8 +17,8 @@ app.use(express.static('public'));
 
 app.get('/webhook', (req, res) => {
 
-	// let city = req.body.queryResult.parameters['geo-city'];
-	let city = 'Lagos';
+	let city = req.body.queryResult.parameters['geo-city'];
+	// let city = 'Lagos';
 	callWeather = (city) =>{
 		return new Promise((resolve, reject) => {
 	  		
@@ -41,17 +41,34 @@ app.get('/webhook', (req, res) => {
 
 	// let city = 'Lagos';
 	callWeather(city).then((output) => {
-		res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
+
+		res.json({
+				"fulfillmentMessages": [
+	      			{
+	        			"text": {
+	          			"text": [
+	            		output
+	          		]
+        		}
+      		}
+    	]
+	}); // Return the results of the weather API to Dialogflow
 	}).catch(()=>{
-		// console.log(output);
-		res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!`});
+		res.json({
+				"fulfillmentMessages": [
+	    			{
+	       				"text": {
+	       				"text": [
+	           			`I don't know the weather but I hope it's good!`
+	       			]
+        		}
+      		}
+    	]
+	});
 	});
 	
 
 });
-
-
-
 
 app.get('/', (req, res) => {
 	res.render('index');
