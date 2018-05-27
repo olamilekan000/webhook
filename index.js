@@ -17,6 +17,8 @@ app.use(express.static('public'));
 
 app.get('/webhook', (req, res) => {
 
+	// let city = req.body.queryResult.parameters['geo-city'];
+	let city = 'Lagos';
 	callWeather = (city) =>{
 		return new Promise((resolve, reject) => {
 	  		
@@ -37,7 +39,6 @@ app.get('/webhook', (req, res) => {
 		})
 	}
 
-	let city = req.body.queryResult.parameters['geo-city'];
 	// let city = 'Lagos';
 	callWeather(city).then((output) => {
 		res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
