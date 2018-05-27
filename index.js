@@ -58,4 +58,8 @@ app.get('/', (req, res) => {
 	res.end();
 });
 
-app.listen(process.env.PORT || 3100, () => console.log('server started'));
+const PORT = 3100;
+
+app.listen(process.env.PORT || PORT, () => {
+	console.log('now listening to ' + PORT)
+});
