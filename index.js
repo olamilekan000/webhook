@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const Promise = require("es6-promise").Promise;
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
 const apiKey = require('./key')
@@ -38,7 +37,8 @@ app.get('/webhook', (req, res) => {
 		})
 	}
 
-	let city = req.body.queryResult.parameters['geo-city'];
+	// let city = req.body.queryResult.parameters['geo-city'];
+	let city = 'Lagos';
 	callWeather(city).then((output) => {
 		res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
 	}).catch(()=>{
@@ -49,7 +49,6 @@ app.get('/webhook', (req, res) => {
 
 });
 
-// });
 
 
 
