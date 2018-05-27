@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/webhook', (req, res) => {
+app.post('/webhook', (req, res) => {
 
 	let city = req.body.queryResult.parameters["geo-city"];
 	// let city = 'Lagos';
