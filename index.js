@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-var Promise = require("es6-promise").Promise;
+const Promise = require("es6-promise").Promise;
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
 const apiKey = require('./key')
 // const db = require('./db');
 
 const app = express();
+
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +54,8 @@ app.get('/webhook', (req, res) => {
 
 
 app.get('/', (req, res) => {
-	res.send('Hello Express app');
+	res.render('index');
+	res.end();
 });
 
 app.listen(process.env.PORT || 3100, () => console.log('server started'));
