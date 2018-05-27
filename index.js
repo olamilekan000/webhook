@@ -37,8 +37,8 @@ app.get('/webhook', (req, res) => {
 		})
 	}
 
-	// let city = req.body.queryResult.parameters['geo-city'];
-	let city = 'Lagos';
+	let city = req.body.queryResult.parameters['geo-city'];
+	// let city = 'Lagos';
 	callWeather(city).then((output) => {
 		res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
 	}).catch(()=>{
